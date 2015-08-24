@@ -1,0 +1,12 @@
+group 'spring'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    // Jetty Web Container
+    compile("org.eclipse.jetty:jetty-server")
+    compile("org.eclipse.jetty:jetty-webapp")
+    compile("org.eclipse.jetty:jetty-servlet")
+    compile("org.eclipse.jetty:jetty-servlets")
+    compile("org.eclipse.jetty:jetty-util")
+    compile("org.eclipse.jetty:jetty-http")
+}
