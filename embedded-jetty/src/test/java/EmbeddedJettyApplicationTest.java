@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = EmbeddedJettyApplication.class)
 @WebAppConfiguration
-@IntegrationTest("server.port:0")
+@IntegrationTest("server.port:0") // Random port
 @DirtiesContext // Use this annotation if a test has modified the context
 public class EmbeddedJettyApplicationTest {
 
