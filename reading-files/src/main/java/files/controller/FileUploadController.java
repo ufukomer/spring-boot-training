@@ -27,7 +27,7 @@ public class FileUploadController {
     @ResponseBody
     void handleFileUpload(@RequestParam("file") MultipartFile file,
                           HttpServletRequest request,
-                          HttpServletResponse response) {
+                          HttpServletResponse response) throws IOException {
 
         // Get absolute path of the application
         ServletContext context = request.getServletContext();
