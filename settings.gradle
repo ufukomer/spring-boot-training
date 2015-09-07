@@ -2,4 +2,5 @@ rootProject.name = 'spring-boot-training'
 include 'hello-world'
 include 'embedded-jetty'
 include 'reading-files'
+include 'jpa-hibernate'
 

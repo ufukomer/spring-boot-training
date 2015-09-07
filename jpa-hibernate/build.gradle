@@ -1,0 +1,11 @@
+group 'spring'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    // Spring Data JPA
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    // MySQL
+    compile("mysql:mysql-connector-java")
+    // Mockito
+    compile("org.mockito:mockito-core")
+}
