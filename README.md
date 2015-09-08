@@ -2,4 +2,4 @@
 - hello-world - CommandLineRunner application.
 - embedded-jetty - EmbeddedServletContainerFactory and ServletContextListener.
 - reading-files - Read a text file and alphabetically sort then put into http response body.
-- jpa-hibernate - MySQL database through Hibernate.
+- jpa-hibernate - MySQL database through Hibernate, Repository.

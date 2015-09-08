@@ -20,16 +20,16 @@ import java.util.Properties;
 public class DatabaseConfig {
 
     @Value("${hibernate.dialect}")
-    private String HIBERNATE_DIALECT;
+    private String hibernateDialect;
 
     @Value("${hibernate.show_sql}")
-    private String HIBERNATE_SHOW_SQL;
+    private String hibernateShowSql;
 
     @Value("${hibernate.hbm2ddl.auto}")
-    private String HIBERNATE_HBM2DDL_AUTO;
+    private String hibernateHbm2ddlAuto;
 
     @Value("${entitymanager.packagesToScan}")
-    private String ENTITYMANAGER_PACKAGES_TO_SCAN;
+    private String packagesToScan;
 
     @Bean
     @ConfigurationProperties(prefix = "db")
@@ -41,16 +41,17 @@ public class DatabaseConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
-        sessionFactoryBean.setPackagesToScan(ENTITYMANAGER_PACKAGES_TO_SCAN);
-
-        Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.dialect", HIBERNATE_DIALECT);
-        hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
-        hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
-
-        sessionFactoryBean.setHibernateProperties(hibernateProperties);
-
+        sessionFactoryBean.setPackagesToScan(packagesToScan);
+        sessionFactoryBean.setHibernateProperties(hibernateProperties());
         return sessionFactoryBean;
+    }
+
+    private Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", hibernateDialect);
+        properties.put("hibernate.show_sql", hibernateShowSql);
+        properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+        return properties;
     }
 
     @Bean

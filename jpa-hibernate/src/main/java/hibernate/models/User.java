@@ -7,13 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Created by Ufuk on 08-09-15.
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,11 +28,7 @@ public class User {
     @Size(min = 2, max = 80)
     private String name;
 
-    public User() {
-    }
-
-    public User(long id) {
-        this.id = id;
+    protected User() {
     }
 
     public User(String email, String name) {

@@ -1,6 +1,6 @@
 package hibernate.controllers;
 
-import hibernate.models.UserDao;
+import hibernate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @Autowired
-    private UserDao userDao;
+    private UserService service;
 
     @RequestMapping("/")
     @ResponseBody
     public String index() {
-        return userDao.getAll().toString();
+        return service.getAll().toString();
     }
 }
