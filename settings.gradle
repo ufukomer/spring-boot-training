@@ -3,4 +3,5 @@ include 'hello-world'
 include 'embedded-jetty'
 include 'reading-files'
 include 'jpa-hibernate'
+include 'polymer-data-binding'
 
