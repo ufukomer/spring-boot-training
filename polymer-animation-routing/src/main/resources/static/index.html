@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Polymer Data Binding Demo</title>
+    <meta name="description" content="">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <!-- Chrome / Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="black">
+    <link rel="icon" href="icon.png">
+
+    <!-- Safari / iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+
+    <!-- Web Components -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="elements/elements.html">
+    <style is="custom-style">
+        :root {
+            --paper-toolbar-background: #00bcd4;
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            color: #333;
+        }
+
+        paper-tabs, paper-toolbar {
+            background-color: #00bcd4;
+            color: #fff;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        paper-toolbar paper-tabs {
+            box-shadow: none;
+        }
+
+        paper-tabs[noink][no-bar] paper-tab.iron-selected {
+            color: #ffff8d;
+        }
+
+        paper-tabs paper-tab a {
+            color: white;
+            text-decoration: none;
+        }
+
+        paper-tabs[align-bottom] {
+            box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 400;
+            padding-top: 20px;
+        }
+
+        neon-animatable {
+            color: black;
+            @apply(--layout-horizontal);
+            @apply(--layout-center-center);
+            @apply(--paper-font-display4);
+        }
+
+        neon-animatable {
+            overflow: hidden;
+        }
+        neon-animatable:nth-of-type(1) {
+            background: #0085FF;
+        }
+        neon-animatable:nth-of-type(2) {
+            background: #FF0011;
+        }
+        neon-animatable:nth-of-type(3) {
+            background: #FFB600;
+        }
+    </style>
+</head>
+<body class="fullbleed layout vertical" unresolved>
+
+    <template is="dom-bind" id="app">
+
+        <paper-tabs attr-for-selected="data-route" selected="{{route}}">
+            <paper-tab data-route="projects"><a href="/projects" class="horizontal center-center layout">PROJECTS</a>
+            </paper-tab>
+            <paper-tab data-route="posts"><a href="/posts" class="horizontal center-center layout">POSTS</a></paper-tab>
+            <paper-tab data-route="about"><a href="/about" class="horizontal center-center layout">ABOUT</a>
+            </paper-tab>
+        </paper-tabs>
+
+        <neon-animated-pages class="flex"
+                             selected="{{route}}"
+                             attr-for-selected="data-route"
+                             entry-animation="scale-up-animation"
+                             exit-animation="fade-out-animation">
+
+            <neon-animatable data-route="projects"><greeting-display></greeting-display></neon-animatable>
+            <neon-animatable data-route="posts">1</neon-animatable>
+            <neon-animatable data-route="about">2</neon-animatable>
+
+        </neon-animated-pages>
+
+    </template>
+    <script src="bower_components/page/page.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
