@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>iron-list and paper-scroll-header-panel demo</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../polymer/polymer.html">
+
+  <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+  <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
+  <link rel="import" href="../../paper-scroll-header-panel/paper-scroll-header-panel.html">
+  <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="../../iron-ajax/iron-ajax.html">
+  <link rel="import" href="../../iron-icons/iron-icons.html">
+
+  <link rel="import" href="../../iron-list/iron-list.html">
+  <link rel="import" href="../post-list.html">
+
+  <link href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500|Source+Code+Pro:400,500,700" rel="stylesheet">
+
+  <style is="custom-style">
+  	body {
+		font-family: "RobotoDraft", Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		font-weight: 300;
+    	line-height: 24px;
+	}
+  </style>
+
+</head>
+<body unresolved>
+
+  <post-list></post-list>
+
+  <script>
+  	document.addEventListener('WebComponentsReady', function() {
+        document.querySelector('post-list').show();
+    });
+  </script>
+</body>
+</html>

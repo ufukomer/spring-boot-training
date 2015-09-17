@@ -8,10 +8,11 @@ page('/projects', projects);
 page('/about', about);
 
 // Configure
-page({ hashbang: true });
+page({hashbang: true});
 
 function posts() {
     app.route = 'posts';
+    initAnimations();
 }
 
 function projects() {
@@ -20,4 +21,10 @@ function projects() {
 
 function about() {
     app.route = 'about';
+}
+
+function initAnimations() {
+    document.addEventListener('WebComponentsReady', function () {
+        document.querySelector('post-list').show();
+    });
 }

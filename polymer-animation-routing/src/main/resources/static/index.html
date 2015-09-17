@@ -30,6 +30,7 @@
             font-family: sans-serif;
             margin: 0;
             color: #333;
+            background-color: #ececec;
         }
 
         paper-tabs, paper-toolbar {
@@ -63,20 +64,23 @@
 
         neon-animatable {
             color: black;
-            @apply(--layout-horizontal);
-            @apply(--layout-center-center);
-            @apply(--paper-font-display4);
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+        @apply(--paper-font-display4);
         }
 
         neon-animatable {
             overflow: hidden;
         }
+
         neon-animatable:nth-of-type(1) {
             background: #0085FF;
         }
+
         neon-animatable:nth-of-type(2) {
             background: #FF0011;
         }
+
         neon-animatable:nth-of-type(3) {
             background: #FFB600;
         }
@@ -84,30 +88,42 @@
 </head>
 <body class="fullbleed layout vertical" unresolved>
 
-    <template is="dom-bind" id="app">
+<template is="dom-bind" id="app">
 
-        <paper-tabs attr-for-selected="data-route" selected="{{route}}">
-            <paper-tab data-route="projects"><a href="/projects" class="horizontal center-center layout">PROJECTS</a>
-            </paper-tab>
-            <paper-tab data-route="posts"><a href="/posts" class="horizontal center-center layout">POSTS</a></paper-tab>
-            <paper-tab data-route="about"><a href="/about" class="horizontal center-center layout">ABOUT</a>
-            </paper-tab>
-        </paper-tabs>
+    <paper-tabs attr-for-selected="data-route" selected="{{route}}">
+        <paper-tab data-route="projects" onclick="hidePosts()">
+            <a href="/projects" class="horizontal center-center layout">PROJECTS</a>
+        </paper-tab>
+        <paper-tab data-route="posts" onclick="showPosts()">
+            <a href="/posts" class="horizontal center-center layout">POSTS</a>
+        </paper-tab>
+        <paper-tab data-route="about" onclick="hidePosts()">
+            <a href="/about" class="horizontal center-center layout">ABOUT</a>
+        </paper-tab>
+    </paper-tabs>
 
-        <neon-animated-pages class="flex"
-                             selected="{{route}}"
-                             attr-for-selected="data-route"
-                             entry-animation="scale-up-animation"
-                             exit-animation="fade-out-animation">
+    <iron-pages attr-for-selected="data-route" selected="{{route}}">
+        <div data-route="projects">
+            <greeting-display></greeting-display>
+        </div>
+        <div data-route="posts">
+            <post-list></post-list>
+        </div>
+        <div data-route="about">2</div>
+    </iron-pages>
 
-            <neon-animatable data-route="projects"><greeting-display></greeting-display></neon-animatable>
-            <neon-animatable data-route="posts">1</neon-animatable>
-            <neon-animatable data-route="about">2</neon-animatable>
-
-        </neon-animated-pages>
-
-    </template>
-    <script src="bower_components/page/page.js"></script>
-    <script src="js/app.js"></script>
+</template>
+<script type="text/javascript">
+    function showPosts() {
+        var post = document.querySelector('post-list');
+        post.show();
+    }
+    function hidePosts() {
+        var post = document.querySelector('post-list');
+        post.hide();
+    }
+</script>
+<script src="bower_components/page/page.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
