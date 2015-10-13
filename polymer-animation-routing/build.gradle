@@ -1,3 +1,79 @@
+buildscript {
+    ext {
+        nodePluginVersion = '0.11'
+    }
+
+    repositories {
+        jcenter()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("com.moowork.gradle:gradle-node-plugin:${nodePluginVersion}")
+    }
+}
+
 group 'spring'
 version '1.0-SNAPSHOT'
 
+apply plugin: 'com.moowork.node'
+
+// node configuration
+node {
+    version = '0.12.7'
+    npmVersion = '2.11.3'
+    download = true
+    distBaseUrl = 'https://nodejs.org/dist'
+    workDir = file("${project.buildDir}/nodejs")
+    nodeModulesDir = file("${project.projectDir}")
+}
+
+// Caching of dependencies
+task npmCacheConfig(type: NpmTask) {
+    description = "Configure the NPM cache"
+    def npmCacheDir = "${gradle.getGradleUserHomeDir()}/caches/npm"
+    outputs.files file(npmCacheDir)
+    args = ['config', 'set', 'cache', npmCacheDir]
+}
+
+// Install npm dependencies by using package.json
+task npmPackages(type: NpmTask, dependsOn: npmCacheConfig) {
+    description = "Install Node.js packages"
+    args = ['install']
+    inputs.files file('package.json')
+    outputs.files file('node_modules')
+}
+
+// Install bower dependencies by using bower.json
+task bowerInstall(type: NodeTask) {
+    script = file('node_modules/bower/bin/bower')
+    args = ["--config.storage.cache=${gradle.getGradleUserHomeDir()}/caches/bower/cache",
+            "--config.storage.packages=${gradle.getGradleUserHomeDir()}/caches/bower/packages",
+            "--config.storage.registry=${gradle.getGradleUserHomeDir()}/caches/bower/registry",
+            'install']
+    inputs.files file('bower.json')
+    outputs.files file('bower_components')
+    dependsOn npmPackages
+}
+
+// Move bower_component folder into our web dir
+task bowerSyncJavascript(type: Sync) {
+    from 'bower_components'
+    into "src/main/resources/static/bower_components"
+    dependsOn bowerInstall
+}
+
+task bowerPackages() {
+    dependsOn bowerSyncJavascript
+}
+
+// build task is enough to run all node and bower configurations and dependency installations
+build {
+    dependsOn bowerPackages
+}
+
+// Clean method of node_modules, bower_components for clean task
+clean.delete << file('src/main/resources/static/bower_components')
+clean.delete << file('node_modules')
+clean.delete << file('bower_components')

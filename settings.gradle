@@ -5,4 +5,3 @@ include 'reading-files'
 include 'jpa-hibernate'
 include 'polymer-data-binding'
 include 'polymer-animation-routing'
-
