@@ -5,3 +5,4 @@
 - jpa-hibernate - MySQL database through Hibernate, Repository.
 - polymer-data-binding - Data binding with iron-ajax component.
 - polymer-animation-routing - Routing with page.js, animating with neon-animation component.
+- thymeleaf-template-engine - Thymeleaf configuration and Formatter example.
