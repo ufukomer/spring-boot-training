@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      lang="en">
+<head>
+    <title>Layout</title>
+</head>
+<style>
+    .container {
+        text-align: center;
+    }
+
+    #login-link {
+        color: gray;
+    }
+
+    #login-link:hover {
+        color: aqua;
+    }
+</style>
+<body>
+<div class="container">
+    <p th:unless="${#strings.isEmpty(date)}">Date: <span th:text="${{date}}">01-01-1990</span></p>
+
+    <p>User: <span th:text="#{user.name}">Anonymous</span></p>
+
+    <p th:unless="${#strings.isEmpty(animal)}">Pet: <span th:object="${animal}" th:text="*{family}">No any pet...</span>
+    </p>
+
+    <a id="login-link" th:href="@{/login}">Login</a>
+</div>
+</body>
+</html>

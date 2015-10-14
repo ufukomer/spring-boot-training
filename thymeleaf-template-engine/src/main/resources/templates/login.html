@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <title>Login</title>
+</head>
+<style>
+    .container {
+        text-align: center;
+    }
+
+    #home-page-link {
+        color: gray;
+    }
+
+    #home-page-link:hover {
+        color: aqua;
+    }
+</style>
+<body>
+<div class="container">
+    <form action="#" th:action="@{/show}" th:object="${animal}" method="post">
+        <input type="text" th:field="*{family}"/>
+        <input type="submit" value="Save"/>
+    </form>
+
+    <a id="home-page-link" th:href="@{/}" th:text="#{home.page}">Home Page</a>
+</div>
+</body>
+</html>
