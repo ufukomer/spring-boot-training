@@ -15,10 +15,10 @@ import java.util.Date;
 public class MainController {
 
     @RequestMapping("/")
-    public String home(ModelMap modelMap) {
+    public String index(ModelMap modelMap) {
         Date date = new Date();
         modelMap.addAttribute("date", date);
-        return "home";
+        return "index";
     }
 
     @RequestMapping("/login")
@@ -30,6 +30,6 @@ public class MainController {
 
     @RequestMapping("/show")
     public String show(@ModelAttribute Animal animal) {
-        return "home";
+        return "index";
     }
 }
