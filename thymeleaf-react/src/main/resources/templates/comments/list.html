@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <title>Comment List</title>
+</head>
+<body>
+<h1 layout:fragment="header">Comments [&uarr;Thymeleaf and React&darr;]</h1>
+
+<div layout:fragment="content">
+    <tr th:each="comment : ${comments}">
+        <label style="color: #5bc0de; font-weight: bold;">
+            Summary:
+            <td th:text="${comment.summary}">Null Summary</td>
+        </label>
+        <label style="color: dimgray; font-style: italic;">
+            Text:
+            <td th:text="${comment.text}">Null Text</td>
+        </label>
+    </tr>
+
+    <div id="content"></div>
+</div>
+</body>
+</html>

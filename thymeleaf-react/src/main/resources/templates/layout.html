@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>Layout</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="../static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+
+    <!-- JavaScript -->
+    <script th:src="@{/js/react-0.14.2.js}"
+            src="../static/js/react-0.14.2.js"></script>
+
+    <script th:src="@{/js/react-dom-0.14.2.js}"
+            src="../static/js/react-dom-0.14.2.js"></script>
+
+    <script th:src="@{/js/browser.min.js}"
+            src="../static/js/browser.min.js"></script>
+
+    <script type="text/javascript"
+            th:type="javascript"
+            th:src="@{/js/bootstrap.js}"
+            src="../static/js/bootstrap.js"></script>
+
+    <script type="text/javascript"
+            th:type="javascript"
+            th:src="@{/js/jquery-2.1.4.min.js}"
+            src="../static/js/jquery-2.1.4.min.js"></script>
+</head>
+<style>
+    table {
+        width: 75%;;
+    }
+
+    table, tr, th {
+        font-weight: bold;
+        border: 1px solid #5bc0de;
+    }
+
+    th {
+        background-color: #5bc0de;
+        color: white;
+    }
+</style>
+<body>
+<div class="container">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand"
+               href="https://github.com/ufukomer/spring-boot-training">
+                ThymeReact
+            </a>
+        </div>
+    </div>
+
+    <h1 layout:fragment="header">Layout</h1>
+
+    <div layout:fragment="content">
+        Fake content
+    </div>
+</div>
+<script th:inline="javascript">
+    var COMMENTS = /*[[${hello}]]*/ 'Hello World!';
+</script>
+<script type="text/babel"
+        th:src="@{/jsx/comments.js}"
+        src="../static/jsx/comments.js"></script>
+</body>
+</html>
