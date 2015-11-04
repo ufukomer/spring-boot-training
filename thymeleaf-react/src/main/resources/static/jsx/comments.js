@@ -1,20 +1,3 @@
-/*
- var paragraph = document.querySelector("#hello-message");
- paragraph.innerHTML = username;
- */
-
-var CommentRow = React.createClass({
-    render: function () {
-        var name = this.props.comment.summary;
-        return (
-            <tr>
-                <td>{name}</td>
-                <td>{this.props.comment.text}</td>
-            </tr>
-        );
-    }
-});
-
 var CommentTable = React.createClass({
     render: function () {
         var rows = [];
@@ -22,11 +5,13 @@ var CommentTable = React.createClass({
 
         for (var i = 0; i < parsedComments.length; i++) {
             var id = parsedComments[i].id;
-            rows.push(<CommentRow comment={parsedComments[i]} key={id}/>);
+            var comment = parsedComments[i];
+            rows.push(<CommentTable.Row key={id} comment={comment} /* Comment without {} */ />);
         }
 
         return (
             <table>
+                {/* child comment, put {} around */}
                 <thead>
                 <tr>
                     <th>Summary</th>
@@ -35,6 +20,18 @@ var CommentTable = React.createClass({
                 </thead>
                 <tbody>{rows}</tbody>
             </table>
+        );
+    }
+});
+
+CommentTable.Row = React.createClass({
+    render: function () {
+        var name = this.props.comment.summary;
+        return (
+            <tr>
+                <td>{name}</td>
+                <td>{this.props.comment.text}</td>
+            </tr>
         );
     }
 });

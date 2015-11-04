@@ -22,7 +22,7 @@ apply plugin: 'java'
 apply plugin: 'spring-boot'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-// Run gradle install command to repo in .m2
+// Run gradle install command to save repo in .m2
 apply plugin: 'maven'
 
 jar {
