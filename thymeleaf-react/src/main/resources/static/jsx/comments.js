@@ -1,3 +1,6 @@
+// JSX Transform with Babel: https://facebook.github.io/react/docs/tooling-integration.html
+
+// Comment Table
 var CommentTable = React.createClass({
     render: function () {
         var rows = [];
