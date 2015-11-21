@@ -7,4 +7,5 @@ include 'polymer-data-binding'
 include 'polymer-animation-routing'
 include 'thymeleaf-template-engine'
 include 'thymeleaf-react'
+include 'requirejs-module-loader'
 
